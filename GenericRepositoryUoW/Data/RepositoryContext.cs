@@ -20,6 +20,8 @@ namespace GenericRepositoryUoW.Data
         public RepositoryContext()
             : base("name=DefaultConnection") 
         {
+            //Added for unit test.
+            Database.SetInitializer<RepositoryContext>(null);
             this.Configuration.LazyLoadingEnabled = false;
         }
 
