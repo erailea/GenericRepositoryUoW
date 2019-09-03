@@ -1,0 +1,80 @@
+﻿@model IEnumerable<GenericRepositoryUoW.Models.Test>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    td {
+        vertical-align: middle !important
+    }
+</style>
+<h2>Tests</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Year.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestType.Name)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Year.Name
+            </td>
+            <td>
+                <a href="/Test/Details/@item.ID" class="nav-link">@item.TestType.Name</a>
+            </td>
+        </tr>
+    }
+
+</table>
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var i = 0;
+            var $trs = $('.table tr');
+            $trs.each(function () {
+                var $tds = $(this).find('td');
+                var width = $tds.length;
+                var num = 2;
+                for (i = width - 2; i >= 0; i--) {
+                    if ($($tds[i]).html() == $($tds[i + 1]).html() && $($tds[i]).html() != "") {
+                        $($tds[i]).attr('colspan', num);
+                        num++;
+                        $($tds[i + 1]).remove();
+                    } else {
+                        num = 2;
+                    }
+                }
+                $tds = $(this).find('td');
+                width = $tds.length;
+                $($tds[0]).attr('seq', 0);
+                for (i = 1; i < width; i++) {
+                    $($tds[i]).attr('seq', parseInt($($tds[i - 1]).attr('seq')) + $($tds[i - 1]).prop('colspan'));
+                }
+            });
+
+            var height = $trs.length;
+            var j = 0;
+
+            for (i = height - 2; i >= 0; i--) {
+                $($trs[i]).find('td').each(function () {
+                    var seq = parseInt($(this).attr('seq'));
+                    var $tdUnder = $($trs[i + 1]).find('td[seq="' + seq + '"]');
+                    if ($tdUnder.length && ($tdUnder.html() != "") && ($tdUnder.html() == $(this).html()) && ($tdUnder.prop('colspan') == $(this).prop('colspan'))) {
+                        $(this).prop('rowspan', $tdUnder.prop('rowspan') + 1);
+                        $tdUnder.remove();
+                    }
+                });
+            }
+        });
+    </script>
+}
