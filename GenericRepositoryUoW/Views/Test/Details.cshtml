@@ -5,23 +5,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Test</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.Name)
-        </dt>
+<h2>Test</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course.Name)
-        </dd>
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <h4>Test</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Year.Name)
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.Year.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TestType.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TestType.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Course.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Course.Name)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            @{int i = 1;}
+            @foreach (var item in Model.lstQuestion)
+            {
+
+                <div class="card">
+                    <div class="card-body">
+                        <img src="@Url.Content(item.ImageURL)" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-footer text-muted" style="        text-align: center !important;">
+                        <button class="btn btn-primary">A</button>
+                        <button class="btn btn-primary">B</button>
+                        <button class="btn btn-primary">C</button>
+                        <button class="btn btn-primary">D</button>
+                        <button class="btn btn-primary">E</button>
+                    </div>
+                </div>
+
+                i++;
+            }
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
