@@ -31,13 +31,7 @@ namespace GenericRepositoryUoW.Data
         /// <returns></returns>
         public IRepository<T> Repository<T>() where T : class
         {
-            //if (repositories.Keys.Contains(typeof(T)) == true)
-            //{
-            //    return repositories[typeof(T)] as IRepository<T>;
-            //}
-
             IRepository<T> repo = new GenericRepository<T>(this.entities);
-            //repositories.Add(typeof(T), repo);
             return repo;
         }
 
