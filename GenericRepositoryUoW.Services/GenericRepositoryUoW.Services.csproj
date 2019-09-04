@@ -44,11 +44,11 @@
     <Compile Include="Services\DepartmentCourseService.cs" />
     <Compile Include="Services\CourseService.cs" />
     <Compile Include="Services\DepartmentService.cs" />
-    <Compile Include="Services\IDepartmentCourseService.cs" />
-    <Compile Include="Services\ICourseService.cs" />
-    <Compile Include="Services\IDepartmentService.cs" />
+    <Compile Include="Services\Interfaces\IDepartmentCourseService.cs" />
+    <Compile Include="Services\Interfaces\ICourseService.cs" />
+    <Compile Include="Services\Interfaces\IDepartmentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ITestService.cs" />
+    <Compile Include="Services\Interfaces\ITestService.cs" />
     <Compile Include="Services\TestService.cs" />
   </ItemGroup>
   <ItemGroup>

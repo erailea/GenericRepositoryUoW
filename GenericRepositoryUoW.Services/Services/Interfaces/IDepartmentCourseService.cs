@@ -1,16 +1,13 @@
 ﻿using GenericRepositoryUoW.Data.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GenericRepositoryUoW.Services
+namespace GenericRepositoryUoW.Services.Interfaces
 {
     /// <summary>
     /// Repository interface that takes generic parameter class 
     /// </summary>
-    public interface ITestService : IDisposable
+    public interface IDepartmentCourseService : IDisposable
     {
         /// <summary>
         /// Generic Method that returns Queryable T Type
@@ -18,7 +15,7 @@ namespace GenericRepositoryUoW.Services
         /// <param name="predicate">Func delegate that can be used as Lambda expression</param>
         /// <param name="includes">parameter that helps to reach deep levels of entities</param>
         /// <returns>Queryable T Type</returns>
-        IQueryable<Test> GetAll(Func<Test, bool> predicate = null, params string[] includes);
+        IQueryable<DepartmentCourse> GetAll(Func<DepartmentCourse, bool> predicate = null, params string[] includes);
 
         /// <summary>
         /// Generic Method that returns T Type
@@ -26,24 +23,24 @@ namespace GenericRepositoryUoW.Services
         /// <param name="predicate">Func delegate that can be used as Lambda expression</param>
         /// <param name="includes">parameter that  helps to reach deep levels of entities</param>
         /// <returns>T Type</returns>
-        Test Get(Func<Test, bool> predicate, params string[] includes);
+        DepartmentCourse Get(Func<DepartmentCourse, bool> predicate, params string[] includes);
 
         /// <summary>
-        /// Generic Method that inserts test
+        /// Generic Method that inserts departmentCourse
         /// </summary>
-        /// <param name="test">T Type test to Insert</param>
-        void Add(Test test);
+        /// <param name="departmentCourse">T Type departmentCourse to Insert</param>
+        void Add(DepartmentCourse departmentCourse);
 
         /// <summary>
-        /// Generic Method that updates test
+        /// Generic Method that updates departmentCourse
         /// </summary>
-        /// <param name="test">T Type test to Update</param>
-        void Attach(Test test);
+        /// <param name="departmentCourse">T Type departmentCourse to Update</param>
+        void Attach(DepartmentCourse departmentCourse);
 
         /// <summary>
-        /// Generic Method that deletes test
+        /// Generic Method that deletes departmentCourse
         /// </summary>
-        /// <param name="test">T Type test to Delete</param>
-        void Delete(Test test);
+        /// <param name="departmentCourse">T Type departmentCourse to Delete</param>
+        void Delete(DepartmentCourse departmentCourse);
     }
 }

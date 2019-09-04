@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GenericRepositoryUoW.Data.Models;
 using GenericRepositoryUoW.Data.UoW;
+using GenericRepositoryUoW.Services.Interfaces;
 
 namespace GenericRepositoryUoW.Services
 {

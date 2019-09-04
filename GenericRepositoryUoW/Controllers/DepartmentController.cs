@@ -10,6 +10,7 @@ using GenericRepositoryUoW.Services;
 using GenericRepositoryUoW.Data.Models;
 using Ninject;
 using GenericRepositoryUoW.Data.UoW;
+using GenericRepositoryUoW.Services.Interfaces;
 
 namespace GenericRepositoryUoW.Controllers
 {

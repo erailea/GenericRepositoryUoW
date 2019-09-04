@@ -5,6 +5,7 @@ using System.Net;
 using System.Web.Mvc;
 using GenericRepositoryUoW.Data.Models;
 using GenericRepositoryUoW.Services;
+using GenericRepositoryUoW.Services.Interfaces;
 
 namespace GenericRepositoryUoW.Controllers
 {

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Ninject;
 using GenericRepositoryUoW.Services;
 using GenericRepositoryUoW.Data.UoW;
+using GenericRepositoryUoW.Services.Interfaces;
 
 namespace GenericRepositoryUoW.Infrastructure
 {

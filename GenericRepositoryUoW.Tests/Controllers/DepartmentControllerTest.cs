@@ -6,6 +6,7 @@ using GenericRepositoryUoW.Services;
 using GenericRepositoryUoW.Data.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using GenericRepositoryUoW.Services.Interfaces;
 
 namespace GenericRepositoryUoW.Tests.Controllers
 {
