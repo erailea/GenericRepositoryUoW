@@ -6,14 +6,15 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
+using GenericRepositoryUoW.Data.UoW;
 
-namespace GenericRepositoryUoW.Data
+namespace GenericRepositoryUoW.Data.Repositories
 {
     /// <summary>
-    /// Implementation of GenericRepository with Context dependency
+    /// Implementation of Repository with Context dependency
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class GenericRepository<T> : IRepository<T> where T : class
+    class Repository<T> : IRepository<T> where T : class
     {
         private readonly RepositoryContext _entities = null;
         private DbSet<T> _objectSet;
@@ -22,7 +23,7 @@ namespace GenericRepositoryUoW.Data
         /// Generic Repository Constructor
         /// </summary>
         /// <param name="entities"></param>
-        public GenericRepository(RepositoryContext entities)
+        public Repository(RepositoryContext entities)
         {
             this._entities = entities;
             this._objectSet = this._entities.Set<T>();

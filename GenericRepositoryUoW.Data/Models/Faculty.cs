@@ -1,33 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace GenericRepositoryUoW.Models
+namespace GenericRepositoryUoW.Data.Models
 {
     /// <summary>
-    /// Abstraction of question
+    /// Abstraction of faculty
     /// </summary>
-    public class Question
+    public class Faculty
     {
         /// <summary>
-        /// Primary key
+        /// Primary Key
         /// </summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
-        /// Correct choice of question
+        /// Name of faculty
         /// </summary>
-        [StringLength(1, MinimumLength = 1)]
-        public string CorrectChoice { get; set; }
+        [Display(Name = "Faculty")]
+        public string Name{ get; set; }
 
         /// <summary>
-        /// Question image URL
+        /// Departments of faculty
         /// </summary>
-        public string ImageURL { get; set; }
-
+        public ICollection<Department> lstDepartment { get; set; }
     }
 }

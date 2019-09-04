@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace GenericRepositoryUoW.Models
+namespace GenericRepositoryUoW.Data.Models
 {
     /// <summary>
-    /// Abstraction of Year
+    /// Abstraction of college term, time range
     /// </summary>
-    public class Year
+    public class Term
     {
         /// <summary>
         /// Primary key
@@ -18,14 +18,9 @@ namespace GenericRepositoryUoW.Models
         public int ID { get; set; }
 
         /// <summary>
-        /// Name of year
+        /// Name definition of entity
         /// </summary>
-        [Display(Name = "Year")]
+        [Display(Name = "Term")]
         public string Name{ get; set; }
-
-        /// <summary>
-        /// Tests which has that Year
-        /// </summary>
-        public ICollection<Test> lstTest { get; set; }
     }
 }

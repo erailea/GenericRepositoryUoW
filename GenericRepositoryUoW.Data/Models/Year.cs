@@ -4,28 +4,28 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace GenericRepositoryUoW.Models
+namespace GenericRepositoryUoW.Data.Models
 {
     /// <summary>
-    /// Abstraction of faculty
+    /// Abstraction of Year
     /// </summary>
-    public class Faculty
+    public class Year
     {
         /// <summary>
-        /// Primary Key
+        /// Primary key
         /// </summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
-        /// Name of faculty
+        /// Name of year
         /// </summary>
-        [Display(Name = "Faculty")]
+        [Display(Name = "Year")]
         public string Name{ get; set; }
 
         /// <summary>
-        /// Departments of faculty
+        /// Tests which has that Year
         /// </summary>
-        public ICollection<Department> lstDepartment { get; set; }
+        public ICollection<Test> lstTest { get; set; }
     }
 }

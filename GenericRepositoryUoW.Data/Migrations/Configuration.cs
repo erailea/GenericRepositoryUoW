@@ -1,12 +1,13 @@
 ﻿using GenericRepositoryUoW.Data;
-using GenericRepositoryUoW.Models;
+using GenericRepositoryUoW.Data.Models;
+using GenericRepositoryUoW.Data.UoW;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
-namespace GenericRepositoryUoW.Migrations
+namespace GenericRepositoryUoW.Data.Migrations
 {
     /// <summary>
     /// DB Configuration class. EF settings set in its constructor
@@ -102,17 +103,17 @@ namespace GenericRepositoryUoW.Migrations
                     Question2.Add(new Question { CorrectChoice = "C", ImageURL = "http://lorempixel.com/640/360/" });
                     Question2.Add(new Question { CorrectChoice = "B", ImageURL = "http://lorempixel.com/640/360/" });
                     Question2.Add(new Question { CorrectChoice = "A", ImageURL = "http://lorempixel.com/640/360/" });
-                    Test test = new Test { Course = d, TestType = t, Year = y, lstQuestion = Question1 };
+                    Test test = new Test { Course = d, TestType = t, Year = y, lstQuestion = Question1.ToList() };
                     context.Tests.AddOrUpdate(test);
-                    Test test2 = new Test { Course = d2, TestType = t2, Year = y2, lstQuestion = Question2 };
+                    Test test2 = new Test { Course = d2, TestType = t2, Year = y2, lstQuestion = Question2.ToList() };
                     context.Tests.AddOrUpdate(test2);
-                    Test test3 = new Test { Course = d3, TestType = t, Year = y, lstQuestion = Question1 };
+                    Test test3 = new Test { Course = d3, TestType = t, Year = y, lstQuestion = Question1.ToList() };
                     context.Tests.AddOrUpdate(test3);
-                    Test test4 = new Test { Course = d4, TestType = t, Year = y, lstQuestion = Question2 };
+                    Test test4 = new Test { Course = d4, TestType = t, Year = y, lstQuestion = Question2.ToList() };
                     context.Tests.AddOrUpdate(test4);
-                    Test test5 = new Test { Course = d5, TestType = t2, Year = y, lstQuestion = Question1 };
+                    Test test5 = new Test { Course = d5, TestType = t2, Year = y, lstQuestion = Question1.ToList() };
                     context.Tests.AddOrUpdate(test5);
-                    Test test6 = new Test { Course = d5, TestType = t3, Year = y, lstQuestion = Question2 };
+                    Test test6 = new Test { Course = d5, TestType = t3, Year = y, lstQuestion = Question2.ToList() };
                     context.Tests.AddOrUpdate(test6);
                     base.Seed(context);
                 }

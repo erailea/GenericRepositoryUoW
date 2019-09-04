@@ -1,15 +1,17 @@
-﻿using System;
+﻿using GenericRepositoryUoW.Data;
+using GenericRepositoryUoW.Data.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericRepositoryUoW.Data
+namespace GenericRepositoryUoW.Data.UoW
 {
     /// <summary>
     /// Unit Of Work Pattern Interface
     /// </summary>
-    public interface IGenericUoW : IDisposable
+    public interface IUoW : IDisposable
     {
         /// <summary>
         /// That Method will help us to get our needed repository which we use its methods to interact with entity 

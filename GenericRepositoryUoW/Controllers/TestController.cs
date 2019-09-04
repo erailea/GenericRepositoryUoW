@@ -6,8 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GenericRepositoryUoW.Data;
-using GenericRepositoryUoW.Models;
+using GenericRepositoryUoW.Data.Models;
+using GenericRepositoryUoW.Services;
+using Ninject;
 
 namespace GenericRepositoryUoW.Controllers
 {
@@ -17,21 +18,16 @@ namespace GenericRepositoryUoW.Controllers
     public class TestController : Controller
     {
         /// <summary>
-        /// GenericUoW and RepositoryContext Instances
+        /// Needed service instances
         /// </summary>
-        private readonly GenericUoW UoW = null;
-        private readonly RepositoryContext _context = null;
+        private readonly ITestService testService;
 
         /// <summary>
-        /// TestController constructor where UoW instance sets
+        /// TestController constructor where service instances set
         /// </summary>
-        public TestController()
+        public TestController(ITestService testServiceParam)
         {
-            if (this._context == null)
-            {
-                this._context = new RepositoryContext();
-            }
-            this.UoW = new GenericUoW(this._context);
+            this.testService = testServiceParam;
         }
 
         /// <summary>
@@ -40,7 +36,7 @@ namespace GenericRepositoryUoW.Controllers
         /// <returns>Index view with Test List Model</returns>
         public ActionResult Index()
         {
-            return View(UoW.Repository<Test>().GetAll().ToList());
+            return View(testService.GetAll().ToList());
         }
 
         /// <summary>
@@ -54,7 +50,7 @@ namespace GenericRepositoryUoW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Test test = UoW.Repository<Test>().Get(x => x.ID == id, new string[] { "Year", "TestType", "Course", "lstQuestion" });
+            Test test = testService.Get(x => x.ID == id, new string[] { "Year", "TestType", "Course", "lstQuestion" });
             if (test == null)
             {
                 return HttpNotFound();
@@ -82,8 +78,7 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (ModelState.IsValid)
             {
-                UoW.Repository<Test>().Add(test);
-                UoW.SaveChanges();
+                testService.Add(test);
                 return RedirectToAction("Index");
             }
 
@@ -101,7 +96,7 @@ namespace GenericRepositoryUoW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Test test = UoW.Repository<Test>().Get(x => x.ID == id);
+            Test test = testService.Get(x => x.ID == id);
             if (test == null)
             {
                 return HttpNotFound();
@@ -120,8 +115,7 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (ModelState.IsValid)
             {
-                UoW.Repository<Test>().Attach(test);
-                UoW.SaveChanges();
+                testService.Attach(test);
                 return RedirectToAction("Index");
             }
             return View(test);
@@ -138,7 +132,7 @@ namespace GenericRepositoryUoW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Test test = UoW.Repository<Test>().Get(x => x.ID == id);
+            Test test = testService.Get(x => x.ID == id);
             if (test == null)
             {
                 return HttpNotFound();
@@ -155,9 +149,8 @@ namespace GenericRepositoryUoW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Test test = UoW.Repository<Test>().Get(x => x.ID == id);
-            UoW.Repository<Test>().Delete(test);
-            UoW.SaveChanges();
+            Test test = testService.Get(x => x.ID == id);
+            testService.Delete(test);
             return RedirectToAction("Index");
         }
 
@@ -169,7 +162,7 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (disposing)
             {
-                UoW.Dispose();
+                testService.Dispose();
             }
             base.Dispose(disposing);
         }

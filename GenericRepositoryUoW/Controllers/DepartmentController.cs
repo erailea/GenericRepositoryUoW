@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GenericRepositoryUoW.Data;
-using GenericRepositoryUoW.Models;
+using GenericRepositoryUoW.Services;
+using GenericRepositoryUoW.Data.Models;
+using Ninject;
+using GenericRepositoryUoW.Data.UoW;
 
 namespace GenericRepositoryUoW.Controllers
 {
@@ -17,21 +19,18 @@ namespace GenericRepositoryUoW.Controllers
     public class DepartmentController : Controller
     {
         /// <summary>
-        /// GenericUoW and RepositoryContext Instances
+        /// Needed service instances
         /// </summary>
-        private readonly GenericUoW UoW = null;
-        private readonly RepositoryContext _context = null;
-
+        private readonly IDepartmentService departmentService;
+        private readonly IDepartmentCourseService departmentCourseService;
+        
         /// <summary>
-        /// DepartmentController constructor where UoW instance sets
+        /// DepartmentController constructor where service instances set
         /// </summary>
-        public DepartmentController()
+        public DepartmentController(IDepartmentService departmentServiceParam,IDepartmentCourseService departmentCourseServiceParam)
         {
-            if (this._context == null)
-            {
-                this._context = new RepositoryContext();
-            }
-            this.UoW = new GenericUoW(this._context);
+            this.departmentService = departmentServiceParam;
+            this.departmentCourseService = departmentCourseServiceParam;
         }
 
         /// <summary>
@@ -40,7 +39,7 @@ namespace GenericRepositoryUoW.Controllers
         /// <returns>Index view with Department List Model</returns>
         public ActionResult Index()
         {
-            return View(UoW.Repository<Department>().GetAll(includes: "Faculty").OrderBy(o => o.Faculty.Name).ToList());
+            return View(departmentService.GetAll(includes: "Faculty").OrderBy(o => o.Faculty.Name).ToList());
         }
 
         /// <summary>
@@ -55,7 +54,7 @@ namespace GenericRepositoryUoW.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View(UoW.Repository<DepartmentCourse>().GetAll(x => x.Department_ID == id, includes: new string[] { "Term", "Course" }).OrderBy(o => o.Term.ID).ToList());
+            return View(departmentCourseService.GetAll(x => x.Department_ID == id, includes: new string[] { "Term", "Course" }).OrderBy(o => o.Term.ID).ToList());
         }
 
         /// <summary>
@@ -78,8 +77,7 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (ModelState.IsValid)
             {
-                UoW.Repository<Department>().Add(Department);
-                UoW.SaveChanges();
+                departmentService.Add(Department);
                 return RedirectToAction("Index");
             }
 
@@ -97,7 +95,7 @@ namespace GenericRepositoryUoW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department Department = UoW.Repository<Department>().Get(x => x.ID == id);
+            Department Department = departmentService.Get(x => x.ID == id);
             if (Department == null)
             {
                 return HttpNotFound();
@@ -116,8 +114,7 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (ModelState.IsValid)
             {
-                UoW.Repository<Department>().Attach(Department);
-                UoW.SaveChanges();
+                departmentService.Attach(Department);
                 return RedirectToAction("Index");
             }
             return View(Department);
@@ -134,7 +131,7 @@ namespace GenericRepositoryUoW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department Department = UoW.Repository<Department>().Get(x => x.ID == id);
+            Department Department = departmentService.Get(x => x.ID == id);
             if (Department == null)
             {
                 return HttpNotFound();
@@ -151,9 +148,8 @@ namespace GenericRepositoryUoW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Department Department = UoW.Repository<Department>().Get(x => x.ID == id);
-            UoW.Repository<Department>().Delete(Department);
-            UoW.SaveChanges();
+            Department Department = departmentService.Get(x => x.ID == id);
+            departmentService.Delete(Department);
             return RedirectToAction("Index");
         }
 
@@ -165,7 +161,7 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (disposing)
             {
-                UoW.Dispose();
+                departmentService.Dispose();
             }
             base.Dispose(disposing);
         }

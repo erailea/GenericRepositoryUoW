@@ -1,16 +1,17 @@
-﻿using System;
+﻿using GenericRepositoryUoW.Data.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
-namespace GenericRepositoryUoW.Data
+namespace GenericRepositoryUoW.Data.UoW
 {
     /// <summary>
     /// Implementation of IGenericUoW which helps us entity operation over the repository
     /// </summary>
-    public class GenericUoW : IGenericUoW
+    public class UoW : IUoW
     {
         private readonly RepositoryContext entities = null;
         public Dictionary<Type, object> repositories = new Dictionary<Type, object>();
@@ -19,7 +20,7 @@ namespace GenericRepositoryUoW.Data
         /// UoW Constructor takes Context Parameter and return our UoW operator. 
         /// </summary>
         /// <param name="entities"></param>
-        public GenericUoW(RepositoryContext entities)
+        public UoW(RepositoryContext entities)
         {
             this.entities = entities;
         }
@@ -31,7 +32,7 @@ namespace GenericRepositoryUoW.Data
         /// <returns></returns>
         public IRepository<T> Repository<T>() where T : class
         {
-            IRepository<T> repo = new GenericRepository<T>(this.entities);
+            IRepository<T> repo = new Repository<T>(this.entities);
             return repo;
         }
 

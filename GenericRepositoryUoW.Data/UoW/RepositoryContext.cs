@@ -5,9 +5,9 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
-using GenericRepositoryUoW.Models;
+using GenericRepositoryUoW.Data.Models;
 
-namespace GenericRepositoryUoW.Data
+namespace GenericRepositoryUoW.Data.UoW
 {
     /// <summary>
     /// Repository context manages our DB connection, DB config and holds DBSets

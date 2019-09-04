@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using GenericRepositoryUoW.Data;
-using GenericRepositoryUoW.Models;
+using GenericRepositoryUoW.Data.Models;
+using GenericRepositoryUoW.Services;
 
 namespace GenericRepositoryUoW.Controllers
 {
@@ -17,21 +14,18 @@ namespace GenericRepositoryUoW.Controllers
     public class CourseController : Controller
     {
         /// <summary>
-        /// GenericUoW and RepositoryContext Instances
+        /// Needed service instances
         /// </summary>
-        private readonly GenericUoW UoW = null;
-        private readonly RepositoryContext _context = null;
+        private readonly ICourseService courseService;
+        private readonly ITestService testService;
 
         /// <summary>
-        /// CourseController constructor where UoW instance sets
+        /// CourseController constructor where service instances set
         /// </summary>
-        public CourseController()
+        public CourseController(ICourseService courseServiceParam, ITestService testServiceParam)
         {
-            if (this._context == null)
-            {
-                this._context = new RepositoryContext();
-            }
-            this.UoW = new GenericUoW(this._context);
+            this.courseService = courseServiceParam;
+            this.testService = testServiceParam;
         }
 
         /// <summary>
@@ -40,7 +34,7 @@ namespace GenericRepositoryUoW.Controllers
         /// <returns>Index view with Course List Model</returns>
         public ActionResult Index()
         {
-            return View(UoW.Repository<Course>().GetAll(includes: "lstTest").ToList());
+            return View(courseService.GetAll(includes: "lstTest").ToList());
         }
 
         /// <summary>
@@ -54,7 +48,7 @@ namespace GenericRepositoryUoW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List<Test> lstTest = UoW.Repository<Test>().GetAll(x => x.Course_ID == id, includes: new string[] { "Year", "TestType" }).OrderBy(o => o.Year.Name).ToList();
+            List<Test> lstTest = testService.GetAll(x => x.Course_ID == id, includes: new string[] { "Year", "TestType" }).OrderBy(o => o.Year.Name).ToList();
             if (lstTest.Count == 0)
             {
                 return View(new List<Test>());
@@ -82,8 +76,7 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (ModelState.IsValid)
             {
-                UoW.Repository<Course>().Add(Course);
-                UoW.SaveChanges();
+                courseService.Add(Course);
                 return RedirectToAction("Index");
             }
 
@@ -101,7 +94,7 @@ namespace GenericRepositoryUoW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course Course = UoW.Repository<Course>().Get(x => x.ID == id);
+            Course Course = courseService.Get(x => x.ID == id);
             if (Course == null)
             {
                 return HttpNotFound();
@@ -120,8 +113,7 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (ModelState.IsValid)
             {
-                UoW.Repository<Course>().Attach(Course);
-                UoW.SaveChanges();
+                courseService.Attach(Course);
                 return RedirectToAction("Index");
             }
             return View(Course);
@@ -138,7 +130,7 @@ namespace GenericRepositoryUoW.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course Course = UoW.Repository<Course>().Get(x => x.ID == id);
+            Course Course = courseService.Get(x => x.ID == id);
             if (Course == null)
             {
                 return HttpNotFound();
@@ -155,9 +147,8 @@ namespace GenericRepositoryUoW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course Course = UoW.Repository<Course>().Get(x => x.ID == id);
-            UoW.Repository<Course>().Delete(Course);
-            UoW.SaveChanges();
+            Course Course = courseService.Get(x => x.ID == id);
+            courseService.Delete(Course);
             return RedirectToAction("Index");
         }
 
@@ -169,7 +160,8 @@ namespace GenericRepositoryUoW.Controllers
         {
             if (disposing)
             {
-                UoW.Dispose();
+                courseService.Dispose();
+                testService.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -48,6 +48,9 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -106,6 +109,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GenericRepositoryUoW.Data\GenericRepositoryUoW.Data.csproj">
+      <Project>{2a2fb87d-1f34-43a4-be65-c0f610efa3cd}</Project>
+      <Name>GenericRepositoryUoW.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GenericRepositoryUoW.Services\GenericRepositoryUoW.Services.csproj">
+      <Project>{347b69b7-e88a-435f-b89d-1e7aec01b4c6}</Project>
+      <Name>GenericRepositoryUoW.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GenericRepositoryUoW\GenericRepositoryUoW.csproj">
       <Project>{005E0C67-DC92-4259-8146-BB98E523A6A1}</Project>
       <Name>GenericRepositoryUoW</Name>

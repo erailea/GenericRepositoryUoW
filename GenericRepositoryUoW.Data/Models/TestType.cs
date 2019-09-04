@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace GenericRepositoryUoW.Models
+namespace GenericRepositoryUoW.Data.Models
 {
     /// <summary>
     /// Abstraction of Test Types

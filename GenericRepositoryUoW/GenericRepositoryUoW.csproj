@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -130,24 +133,10 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Data\GenericRepository.cs" />
-    <Compile Include="Data\GenericUoW.cs" />
-    <Compile Include="Data\IGenericUoW.cs" />
-    <Compile Include="Data\IRepository.cs" />
-    <Compile Include="Data\RepositoryContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\Department.cs" />
-    <Compile Include="Models\DepartmentCourse.cs" />
-    <Compile Include="Models\Faculty.cs" />
-    <Compile Include="Models\Question.cs" />
-    <Compile Include="Models\Term.cs" />
-    <Compile Include="Models\Test.cs" />
-    <Compile Include="Models\TestType.cs" />
-    <Compile Include="Models\Year.cs" />
+    <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +206,16 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GenericRepositoryUoW.Data\GenericRepositoryUoW.Data.csproj">
+      <Project>{2a2fb87d-1f34-43a4-be65-c0f610efa3cd}</Project>
+      <Name>GenericRepositoryUoW.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GenericRepositoryUoW.Services\GenericRepositoryUoW.Services.csproj">
+      <Project>{347b69b7-e88a-435f-b89d-1e7aec01b4c6}</Project>
+      <Name>GenericRepositoryUoW.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

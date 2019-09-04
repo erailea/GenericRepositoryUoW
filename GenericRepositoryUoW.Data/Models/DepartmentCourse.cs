@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace GenericRepositoryUoW.Models
+namespace GenericRepositoryUoW.Data.Models
 {
     /// <summary>
     /// To reach department to course and viceversa, also maintain Department - Course n to n relationship

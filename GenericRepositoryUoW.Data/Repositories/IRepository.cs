@@ -5,7 +5,7 @@ using System.Text;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
-namespace GenericRepositoryUoW.Data
+namespace GenericRepositoryUoW.Data.Repositories
 {
     /// <summary>
     /// Repository interface that takes generic parameter class 
