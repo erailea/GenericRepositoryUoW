@@ -35,10 +35,16 @@ localhost:44386/
 ### Break down into end to end tests
 
 
-
+To see and run tests we need to open Test Explorer 
+```
+Test > Windows > Test Explorer
+```
+and click
+```
+Run All
 ```
 
-```
+It will get us summary for all test methods.
 
 ### And coding style tests
 
