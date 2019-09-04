@@ -49,26 +49,6 @@ Run All
 
 It will get us summary for all test methods.
 
-### And coding style tests
-
-
-
-```
-
-```
-
-## Deployment
-
-
-
-## Built With
-
-
-## Contributing
-
-
-## Versioning
-
 
 ## Authors
 
@@ -81,4 +61,3 @@ It will get us summary for all test methods.
 ## Acknowledgments
 
 * Inspiration
-* etc
