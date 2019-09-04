@@ -11,11 +11,20 @@ using GenericRepositoryUoW.Models;
 
 namespace GenericRepositoryUoW.Controllers
 {
+    /// <summary>
+    /// Course Controller 
+    /// </summary>
     public class CourseController : Controller
     {
+        /// <summary>
+        /// GenericUoW and RepositoryContext Instances
+        /// </summary>
         private readonly GenericUoW UoW = null;
         private readonly RepositoryContext _context = null;
 
+        /// <summary>
+        /// CourseController constructor where UoW instance sets
+        /// </summary>
         public CourseController()
         {
             if (this._context == null)
@@ -25,13 +34,20 @@ namespace GenericRepositoryUoW.Controllers
             this.UoW = new GenericUoW(this._context);
         }
 
-        // GET: Test
+        /// <summary>
+        /// Course/Index views corresponding action
+        /// </summary>
+        /// <returns>Index view with Course List Model</returns>
         public ActionResult Index()
         {
             return View(UoW.Repository<Course>().GetAll(includes: "lstTest").ToList());
         }
 
-        // GET: Course/Details/5
+        /// <summary>
+        /// GET: Course/Details views corresponding action
+        /// </summary>
+        /// <param name="id">Course id</param>
+        /// <returns>Details view with Test list that has given Course id</returns>
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,15 +62,20 @@ namespace GenericRepositoryUoW.Controllers
             return View(lstTest);
         }
 
-        // GET: Course/Create
+        /// <summary>
+        /// GET: Course/Create views corresponding action
+        /// </summary>
+        /// <returns>Empty form view to Create new Course</returns>
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Course/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: Course/Create Insert operation
+        /// </summary>
+        /// <param name="Course">Course to insert</param>
+        /// <returns>View with inserted Course model</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name")] Course Course)
@@ -69,7 +90,11 @@ namespace GenericRepositoryUoW.Controllers
             return View(Course);
         }
 
-        // GET: Course/Edit/5
+        /// <summary>
+        /// GET: Course/Edit views corresponding action
+        /// </summary>
+        /// <param name="id">Course id</param>
+        /// <returns>Course/Edit view with Course that has given id</returns>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,9 +109,11 @@ namespace GenericRepositoryUoW.Controllers
             return View(Course);
         }
 
-        // POST: Course/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: Course/Create Update operation
+        /// </summary>
+        /// <param name="Course">Course to edit</param>
+        /// <returns>Corresponding view with its new value</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name")] Course Course)
@@ -100,7 +127,11 @@ namespace GenericRepositoryUoW.Controllers
             return View(Course);
         }
 
-        // GET: Course/Delete/5
+        /// <summary>
+        /// GET: Course/Delete views corresponding action
+        /// </summary>
+        /// <param name="id">Course id</param>
+        /// <returns></returns>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,7 +146,11 @@ namespace GenericRepositoryUoW.Controllers
             return View(Course);
         }
 
-        // POST: Course/Delete/5
+        /// <summary>
+        /// POST: Course/Delete Delete operation
+        /// </summary>        
+        /// <param name="id">Course id</param>
+        /// <returns>Redirected to Course/Index</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -126,6 +161,10 @@ namespace GenericRepositoryUoW.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Controller Dispose Operation
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
