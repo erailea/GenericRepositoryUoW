@@ -57,10 +57,7 @@ Interface for entities
 
 * **Ali TORUN** - *Initial work* - [erailea](https://github.com/erailea)
 
-## License
-
-
 
 ## Acknowledgments
 
-* Inspiration
+* Inspiration...
