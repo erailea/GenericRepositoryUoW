@@ -1,3 +1,6 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/lbves2w7gnhf7qe7?svg=true)](https://ci.appveyor.com/project/erailea/genericrepositoryuow)
+
+
 # GenericRepositoryUoW
 ASP.NET MVC Generic Repository with Unit of Work 
 
