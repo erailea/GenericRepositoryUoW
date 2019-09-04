@@ -34,11 +34,7 @@ localhost:44386/
 ## Running the tests
 
 
-
-### Break down into end to end tests
-
-
-To see and run tests we need to open Test Explorer 
+To run tests we need to open Test Explorer 
 ```
 Test > Windows > Test Explorer
 ```
@@ -49,6 +45,13 @@ Run All
 
 It will get us summary for all test methods.
 
+## Future Works
+
+Test for all controllers
+
+Log handler
+
+Interface for entities
 
 ## Authors
 
