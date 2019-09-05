@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace GenericRepositoryUoW
+namespace GenericRepositoryUoW.Web
 {
     public class BundleConfig
     {

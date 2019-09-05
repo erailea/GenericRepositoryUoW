@@ -21,7 +21,7 @@ namespace GenericRepositoryUoW.Services
         /// Constructor needs UoW instance
         /// </summary>
         /// <param name="unitOfWork">UoW param</param>
-        DepartmentService(IUoW unitOfWork)
+        public DepartmentService(IUoW unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
