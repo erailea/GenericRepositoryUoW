@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using GenericRepositoryUoW.Controllers;
-using GenericRepositoryUoW.Services;
 using GenericRepositoryUoW.Data.Models;
+using GenericRepositoryUoW.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using GenericRepositoryUoW.Services.Interfaces;

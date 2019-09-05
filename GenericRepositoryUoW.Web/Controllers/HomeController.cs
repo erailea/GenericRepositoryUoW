@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace GenericRepositoryUoW.Controllers
+namespace GenericRepositoryUoW.Web.Controllers
 {
     /// <summary>
     /// Controllers are responsible to prepare Model which will be mapped to a view.

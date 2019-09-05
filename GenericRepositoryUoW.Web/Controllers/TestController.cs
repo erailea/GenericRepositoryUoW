@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using GenericRepositoryUoW.Data.Models;
 using GenericRepositoryUoW.Services.Interfaces;
 
-namespace GenericRepositoryUoW.Controllers
+namespace GenericRepositoryUoW.Web.Controllers
 {
     /// <summary>
     /// Test Controller 

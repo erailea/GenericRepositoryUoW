@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using GenericRepositoryUoW.Services;
 using GenericRepositoryUoW.Data.Models;
-using Ninject;
-using GenericRepositoryUoW.Data.UoW;
 using GenericRepositoryUoW.Services.Interfaces;
 
-namespace GenericRepositoryUoW.Controllers
+namespace GenericRepositoryUoW.Web.Controllers
 {
     /// <summary>
     /// Department Controller 

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GenericRepositoryUoW;
-using GenericRepositoryUoW.Controllers;
+using GenericRepositoryUoW.Web.Controllers;
 
 namespace GenericRepositoryUoW.Tests.Controllers
 {
