@@ -32,11 +32,13 @@ namespace GenericRepositoryUoW.Data.Models
         /// <summary>
         /// Course 
         /// </summary>
+        [Required]
         public Course Course { get; set; }
 
         /// <summary>
         /// Term of Department and Course
         /// </summary>
+        [Required]
         public Term Term { get; set; }
 
     }

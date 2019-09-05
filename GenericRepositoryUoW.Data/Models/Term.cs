@@ -21,6 +21,7 @@ namespace GenericRepositoryUoW.Data.Models
         /// Name definition of entity
         /// </summary>
         [Display(Name = "Term")]
+        [Required]
         public string Name{ get; set; }
     }
 }

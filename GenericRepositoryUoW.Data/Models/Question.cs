@@ -22,11 +22,13 @@ namespace GenericRepositoryUoW.Data.Models
         /// Correct choice of question
         /// </summary>
         [StringLength(1, MinimumLength = 1)]
+        [Required]
         public string CorrectChoice { get; set; }
 
         /// <summary>
         /// Question image URL
         /// </summary>
+        [Required]
         public string ImageURL { get; set; }
 
     }

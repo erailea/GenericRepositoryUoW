@@ -21,6 +21,7 @@ namespace GenericRepositoryUoW.Data.Models
         /// Name of year
         /// </summary>
         [Display(Name = "Year")]
+        [Required]
         public string Name{ get; set; }
 
         /// <summary>

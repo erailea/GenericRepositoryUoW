@@ -21,6 +21,7 @@ namespace GenericRepositoryUoW.Data.Models
         /// Name of faculty
         /// </summary>
         [Display(Name = "Faculty")]
+        [Required]
         public string Name{ get; set; }
 
         /// <summary>

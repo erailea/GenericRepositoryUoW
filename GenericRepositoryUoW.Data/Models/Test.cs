@@ -21,11 +21,13 @@ namespace GenericRepositoryUoW.Data.Models
         /// <summary>
         /// Year of test
         /// </summary>
+        [Required]
         public Year Year { get; set; }
 
         /// <summary>
         /// Test type of test
         /// </summary>
+        [Required]
         public TestType TestType { get; set; }
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace GenericRepositoryUoW.Data.Models
         /// Course
         /// </summary>
         [ForeignKey("Course_ID")]
+        [Required]
         public Course Course { get; set; }
 
         /// <summary>

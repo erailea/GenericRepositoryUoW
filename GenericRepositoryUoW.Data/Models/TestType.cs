@@ -18,6 +18,7 @@ namespace GenericRepositoryUoW.Data.Models
         /// Name of Test Type
         /// </summary>
         [Display(Name = "Name")]
+        [Required]
         public string Name{ get; set; }
 
         /// <summary>
