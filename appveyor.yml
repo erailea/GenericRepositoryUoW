@@ -4,5 +4,5 @@ nuget:
 before_build:
 - cmd: nuget restore GenericRepositoryUoW.sln
 build:
-  project: genericrepositoryuow
+  project: GenericRepositoryUoW.sln
   verbosity: minimal
